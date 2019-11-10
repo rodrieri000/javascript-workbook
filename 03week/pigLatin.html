@@ -5,13 +5,13 @@
       body {
         background-color: #131418;
         color: #91e1ff;
+        font-family: 'Roboto', sans-serif;
       }
-      .box {
+      .input {        
         display: flex;
         flex-direction: column;
         align-items: center;
-        font-family: 'Roboto', sans-serif;
-        padding: 40px;
+        padding: 30px;
       }
       input[type=text] {
         background-color: #2d303a;
@@ -34,15 +34,24 @@
         border: none;
         border-radius: 10px;
         font-size: 18px;
+        margin-top: 8px;
+      }
+      .output {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
     </style>
   </head>
   <body>
 
-    <div class="box">
+    <div class="input">
       <h1>Pig Latin Converter</h1>
       <input id="text" placeholder="Enter text" type="text">
       <button onclick="convert()" id="btn">Submit</button>
+    </div>
+    <div class="output">
+      <input id="text" placeholder="Converted" type="text">
     </div>
   </body>
 </html>
