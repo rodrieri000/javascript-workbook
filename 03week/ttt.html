@@ -1,0 +1,195 @@
+<html>
+  <head>
+    <style type = "text/css">
+      body {
+        background-color: #2d303a;
+        color: #91e1ff;
+        font-family: 'Roboto', sans-serif;
+      }
+      h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        margin-top: 20px;
+      }
+      table {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+      }
+      td {
+        border: 2px solid #91e1ff;
+        padding: 40px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>Tic Tac Toe</h1>
+    <table>
+      <tr>
+        <td data-row="0" data-col="0" class="board-square"></td>
+        <td data-row="0" data-col="1" class="board-square"></td>
+        <td data-row="0" data-col="2" class="board-square"></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td data-row="1" data-col="0" class="board-square"></td>
+        <td data-row="1" data-col="1" class="board-square"></td>
+        <td data-row="1" data-col="2" class="board-square"></td>
+      </tr>
+    </table>
+    <table>
+      <tr>        
+        <td data-row="2" data-col="0" class="board-square"></td>
+        <td data-row="2" data-col="1" class="board-square"></td>
+        <td data-row="2" data-col="2" class="board-square"></td>
+      </tr>
+    </table>
+  </body>
+</html>
+<script>
+
+  function handleClick(event){
+    document.addEventListener("click", function() {
+      document.getElementById("");
+    }
+  }
+
+
+  let board = [
+    [' ', ' ', ' '],
+    [' ', ' ', ' '],
+    [' ', ' ', ' ']
+  ];
+
+  let playerTurn = 'X';
+
+  function printBoard() {
+    console.log('   0  1  2');
+    console.log('0 ' + board[0].join(' | '));
+    console.log('  ---------');
+    console.log('1 ' + board[1].join(' | '));
+    console.log('  ---------');
+    console.log('2 ' + board[2].join(' | '));
+  }
+
+  function horizontalWin() {
+    // Your code here
+    // check rows of board for match 
+    if (
+      board[0][0] === playerTurn && 
+      board[0][1] === playerTurn && 
+      board[0][2] === playerTurn
+    ) {
+      return true;
+    } else if (
+      board[1][0] === playerTurn && 
+      board[1][1] === playerTurn && 
+      board[1][2] === playerTurn
+    ) {
+      return true;
+    } else if (
+      board[2][0] === playerTurn && 
+      board[2][1] === playerTurn && 
+      board[2][2] === playerTurn
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  function verticalWin() {
+    // Your code here
+    //check columns of board for match 
+    if (
+      board[0][0] === playerTurn && 
+      board[1][0] === playerTurn && 
+      board[2][0] === playerTurn
+    ) {
+      return true;
+    } else if (
+      board[0][1] === playerTurn && 
+      board[1][1] === playerTurn && 
+      board[2][1] === playerTurn
+    ) {
+      return true;
+    } else if (
+      board[0][2] === playerTurn && 
+      board[1][2] === playerTurn && 
+      board[2][2] === playerTurn
+    ) {
+      return true;
+    }
+    return false;
+    
+  }
+
+  function diagonalWin() {
+    // Your code here
+    //check for diagonal pattern top left to bottom right and top right to bottom left on board
+    if (
+      board[0][0] === playerTurn && 
+      board[1][1] === playerTurn && 
+      board[2][2] === playerTurn
+    ) {
+      return true;
+    } else if (
+      board[0][2] === playerTurn && 
+      board[1][1] === playerTurn && 
+      board[2][0] === playerTurn
+    ) {
+      return true;
+    }
+    return false;
+    
+  }
+
+  function checkForWin() {
+    // Your code here
+    // check  for horizontal, vertical, and diagonal win
+    //return true if any of the above return true
+    if (
+      verticalWin
+    ) {
+      return true;
+    } else if (
+      diagonalWin
+    ) {
+      return true;
+    } else if (
+      horizontalWin
+    ) {
+      return true;
+    }
+  }
+
+  function ticTacToe(row, column) {
+    // Your code here
+    let selectedRow = board[row];
+    selectedRow[column] = playerTurn;
+    
+    //manipulate the board array based on the user input (row, column)
+    //manipulate the playerTurn variable and switch from either x to o or o to x
+    if (playerTurn === "X") {
+      playerTurn = "O";
+    } else if ( playerTurn === "O") {
+      playerTurn = "X";
+    }
+  }
+
+  function getPrompt() {
+    printBoard();
+    console.log("It's Player " + playerTurn + "'s turn.");
+    rl.question('row: ', (row) => {
+      rl.question('column: ', (column) => {
+        ticTacToe(row, column);
+        getPrompt();
+      });
+    });
+
+  }
+</script>
