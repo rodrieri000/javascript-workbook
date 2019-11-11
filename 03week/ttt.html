@@ -26,170 +26,90 @@
 
     </style>
   </head>
-  <body>
+  <body onload="startGame()">
     <h1>Tic Tac Toe</h1>
     <table>
       <tr>
-        <td data-row="0" data-col="0" class="board-square"></td>
-        <td data-row="0" data-col="1" class="board-square"></td>
-        <td data-row="0" data-col="2" class="board-square"></td>
+        <td id="s1" onclick="handleClick(this)">-</td>
+        <td id="s2" onclick="handleClick(this)">-</td>
+        <td id="s3" onclick="handleClick(this)">-</td>
       </tr>
     </table>
     <table>
       <tr>
-        <td data-row="1" data-col="0" class="board-square"></td>
-        <td data-row="1" data-col="1" class="board-square"></td>
-        <td data-row="1" data-col="2" class="board-square"></td>
+        <td id="s4" onclick="handleClick(this)">-</td>
+        <td id="s5" onclick="handleClick(this)">-</td>
+        <td id="s6" onclick="handleClick(this)">-</td>
       </tr>
     </table>
     <table>
-      <tr>        
-        <td data-row="2" data-col="0" class="board-square"></td>
-        <td data-row="2" data-col="1" class="board-square"></td>
-        <td data-row="2" data-col="2" class="board-square"></td>
+      <tr>
+        <td id="s7" onclick="handleClick(this)">-</td>
+        <td id="s8" onclick="handleClick(this)">-</td>
+        <td id="s9" onclick="handleClick(this)">-</td>
       </tr>
     </table>
+    <div id="msg"></div>
   </body>
 </html>
 <script>
+'use strict';
 
-  function handleClick(event){
-    document.addEventListener("click", function() {
-      document.getElementById("");
+  function startGame() {
+    for (let i = 1; i <= 9; i++){
+      resetBoard(i)
+    }
+    document.playerTurn = 'X';
+    createMessage("Let's Play")
+  }
+
+  function createMessage(message) {
+    document.getElementById("msg").innerText=message
+  }
+
+  function handleClick(box) {
+    if (box.innerText === ''){
+      box.innerText = document.playerTurn;
+      switchPlayers();
+      console.log(document.playerTurn)
+    }
+  }
+  function switchPlayers() { 
+    if (checkForWin(document.playerTurn)){
+      createMessage(document.playerTurn + ' Wins!')
+    }
+    else if (document.playerTurn === 'X') {
+      document.playerTurn = 'O'
+    } else {
+      document.playerTurn = 'X'
     }
   }
 
-
-  let board = [
-    [' ', ' ', ' '],
-    [' ', ' ', ' '],
-    [' ', ' ', ' ']
-  ];
-
-  let playerTurn = 'X';
-
-  function printBoard() {
-    console.log('   0  1  2');
-    console.log('0 ' + board[0].join(' | '));
-    console.log('  ---------');
-    console.log('1 ' + board[1].join(' | '));
-    console.log('  ---------');
-    console.log('2 ' + board[2].join(' | '));
-  }
-
-  function horizontalWin() {
-    // Your code here
-    // check rows of board for match 
-    if (
-      board[0][0] === playerTurn && 
-      board[0][1] === playerTurn && 
-      board[0][2] === playerTurn
-    ) {
-      return true;
-    } else if (
-      board[1][0] === playerTurn && 
-      board[1][1] === playerTurn && 
-      board[1][2] === playerTurn
-    ) {
-      return true;
-    } else if (
-      board[2][0] === playerTurn && 
-      board[2][1] === playerTurn && 
-      board[2][2] === playerTurn
-    ) {
-      return true;
+  function checkForWin(piece) {
+    if (checkThreeInARow(1, 2, 3, piece) || 
+      checkThreeInARow(4, 5, 6, piece) ||
+      checkThreeInARow(7, 8, 9, piece) ||
+      checkThreeInARow(1, 5, 9, piece) ||
+      checkThreeInARow(3, 5, 7, piece) ||
+      checkThreeInARow(1, 4, 7, piece) ||
+      checkThreeInARow(2, 5, 8, piece) ||
+      checkThreeInARow(3, 6, 9, piece)){
+        return true
+      }
     }
-    return false;
-  }
 
-  function verticalWin() {
-    // Your code here
-    //check columns of board for match 
-    if (
-      board[0][0] === playerTurn && 
-      board[1][0] === playerTurn && 
-      board[2][0] === playerTurn
-    ) {
-      return true;
-    } else if (
-      board[0][1] === playerTurn && 
-      board[1][1] === playerTurn && 
-      board[2][1] === playerTurn
-    ) {
-      return true;
-    } else if (
-      board[0][2] === playerTurn && 
-      board[1][2] === playerTurn && 
-      board[2][2] === playerTurn
-    ) {
-      return true;
-    }
-    return false;
-    
-  }
-
-  function diagonalWin() {
-    // Your code here
-    //check for diagonal pattern top left to bottom right and top right to bottom left on board
-    if (
-      board[0][0] === playerTurn && 
-      board[1][1] === playerTurn && 
-      board[2][2] === playerTurn
-    ) {
-      return true;
-    } else if (
-      board[0][2] === playerTurn && 
-      board[1][1] === playerTurn && 
-      board[2][0] === playerTurn
-    ) {
-      return true;
-    }
-    return false;
-    
-  }
-
-  function checkForWin() {
-    // Your code here
-    // check  for horizontal, vertical, and diagonal win
-    //return true if any of the above return true
-    if (
-      verticalWin
-    ) {
-      return true;
-    } else if (
-      diagonalWin
-    ) {
-      return true;
-    } else if (
-      horizontalWin
-    ) {
-      return true;
+  function checkThreeInARow(a, b, c, piece) {
+    if (getTheBox(a) === piece && getTheBox(b) === piece && getTheBox(c) === piece) {
+      return true
     }
   }
 
-  function ticTacToe(row, column) {
-    // Your code here
-    let selectedRow = board[row];
-    selectedRow[column] = playerTurn;
-    
-    //manipulate the board array based on the user input (row, column)
-    //manipulate the playerTurn variable and switch from either x to o or o to x
-    if (playerTurn === "X") {
-      playerTurn = "O";
-    } else if ( playerTurn === "O") {
-      playerTurn = "X";
+  function getTheBox(number) {
+    return document.getElementById('s' + number).innerText
+  }
+
+  function resetBoard(number) {
+    document.getElementById('s' + number).innerText=''
     }
-  }
 
-  function getPrompt() {
-    printBoard();
-    console.log("It's Player " + playerTurn + "'s turn.");
-    rl.question('row: ', (row) => {
-      rl.question('column: ', (column) => {
-        ticTacToe(row, column);
-        getPrompt();
-      });
-    });
-
-  }
 </script>
