@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background-color: #131418;
+        color: #91e1ff;
+        font-family: 'Roboto', sans-serif;
+      }
+      .input {        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+      }
+      input[type=text] {
+        background-color: #2d303a;
+        color: #91e1ff;
+        width: 500px;
+        height: 200px;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        font-size: 20px;
+        font-family: 'Roboto', sans-serif;
+        border: 5px solid #91e1ff;
+        border-radius: 15px;
+      }
+      button {
+        font-family: 'Roboto', sans-serif;
+        background-color: #2d303a;
+        color: #91e1ff;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        margin-top: 8px;
+      }
+      .output {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+  
+    <div class="input">
+      <h1>Pig Latin Converter</h1>
+      <form id="english">
+      <input id="text" placeholder="Enter text" type="text">
+      <!-- <button onclick="convert()" id="btn">Submit</button> -->
+      <button>Submit</button>
+      </form>
+    </div>
+    <div id="output">
+      <!-- <input id="translated" placeholder="Enter text" type="text"> -->
+    </div>
+  </body>
+</html>
+
+<script>
+window.onload = function(){
+  function pigLatin(word) {
+    word = word.toLowerCase().trim();
+
+    const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
+    const firstLetter = word[0];
+
+      if (vowels.includes(firstLetter)) {
+      return word + 'yay';
+    } 
+      else {
+
+    for (let i = 0; i < word.length; i++) {
+      if(vowels.includes(word[i])) {
+      return word.slice(i) + word.slice(0, i) + "ay";
+    }
+    }
+    }
+  }
+    document.getElementById("english").onsubmit = function(event){
+      event.preventDefault();
+      const output = document.getElementById("output");
+      output.innerHTML = pigLatin(document.getElementById("text").value);
+      console.log(output)
+  }
+}
+
+</script>
