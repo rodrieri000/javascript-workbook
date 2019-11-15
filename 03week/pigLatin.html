@@ -40,51 +40,52 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        color: white;
       }
     </style>
   </head>
   <body>
-
+  
     <div class="input">
       <h1>Pig Latin Converter</h1>
+      <form id="english">
       <input id="text" placeholder="Enter text" type="text">
-      <button onclick="convert()" id="btn">Submit</button>
+      <!-- <button onclick="convert()" id="btn">Submit</button> -->
+      <button>Submit</button>
+      </form>
     </div>
-    <div class="output">
-      <input id="text" placeholder="Converted" type="text">
+    <div id="output">
+      <!-- <input id="translated" placeholder="Enter text" type="text"> -->
     </div>
   </body>
 </html>
 
 <script>
+window.onload = function(){
+  function pigLatin(word) {
+    word = word.toLowerCase().trim();
 
-function pigLatin(word) {
+    const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
+    const firstLetter = word[0];
 
-  const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
-  const firstLetter = word[0];
+      if (vowels.includes(firstLetter)) {
+      return word + 'yay';
+    } 
+      else {
 
-  word = word.toLowerCase().trim()
-
-  if (vowels.includes(firstLetter)) {
-    return word + 'yay';
-  } 
-    else {
-
-  for (let i = 0; i < word.length; i++) {
-    if(vowels.includes(word[i])) {
-    return word.slice(i) + word.slice(0, i) + "ay";
+    for (let i = 0; i < word.length; i++) {
+      if(vowels.includes(word[i])) {
+      return word.slice(i) + word.slice(0, i) + "ay";
+    }
+    }
+    }
   }
+    document.getElementById("english").onsubmit = function(event){
+      event.preventDefault();
+      const output = document.getElementById("output");
+      output.innerHTML = pigLatin(document.getElementById("text").value);
+      console.log(output)
   }
-    
-
-}
-
-
-function getPrompt() {
-  rl.question('word ', (answer) => {
-    console.log( pigLatin(answer) );
-    getPrompt();
-  });
 }
 
 </script>
