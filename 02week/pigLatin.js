@@ -11,6 +11,22 @@ const rl = readline.createInterface({
 function pigLatin(word) {
 
   // Your code here
+  const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
+  const firstLetter = word[0];
+
+  word = word.toLowerCase().trim()
+
+  if (vowels.includes(firstLetter)) {
+    return word + 'yay';
+  } 
+    else {
+
+  for (let i = 0; i < word.length; i++) {
+      if(vowels.includes(word[i])) {
+    return word + 'ay';
+  }
+  }
+    
 
 }
 
@@ -44,8 +60,8 @@ if (typeof describe === 'function') {
       assert.equal(pigLatin(' RoCkEt'), 'ocketray');
     });
   });
+
 } else {
 
   getPrompt();
-
 }
