@@ -82,7 +82,6 @@ if (typeof describe === 'function') {
       assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
     });
   });
-
   describe('#isLegal()', () => {
     it('should not allow an illegal move', () => {
       stacks = {
@@ -107,6 +106,14 @@ if (typeof describe === 'function') {
         c: []
       };
       assert.equal(isLegal('a', 'c'), true);
+    });
+    it('should allow a legal move', () => {
+      stacks = {
+        a: [4, 3, 2, 1],
+        b: [],
+        c: []
+      };
+      assert.equal(isLegal('a', 'b'), true);
     });
   });
   describe('#checkForWin()', () => {
