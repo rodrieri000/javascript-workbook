@@ -1,0 +1,115 @@
+<html>
+  <head>
+    <style type = "text/css">
+      body {
+        background-color: #2d303a;
+        color: #91e1ff;
+        font-family: 'Roboto', sans-serif;
+      }
+      h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        margin-top: 20px;
+      }
+      table {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+      }
+      td {
+        border: 2px solid #91e1ff;
+        padding: 40px;
+      }
+
+    </style>
+  </head>
+  <body onload="startGame()">
+    <h1>Tic Tac Toe</h1>
+    <table>
+      <tr>
+        <td id="s1" onclick="handleClick(this)">-</td>
+        <td id="s2" onclick="handleClick(this)">-</td>
+        <td id="s3" onclick="handleClick(this)">-</td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td id="s4" onclick="handleClick(this)">-</td>
+        <td id="s5" onclick="handleClick(this)">-</td>
+        <td id="s6" onclick="handleClick(this)">-</td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td id="s7" onclick="handleClick(this)">-</td>
+        <td id="s8" onclick="handleClick(this)">-</td>
+        <td id="s9" onclick="handleClick(this)">-</td>
+      </tr>
+    </table>
+    <div id="msg"></div>
+  </body>
+</html>
+<script>
+'use strict';
+
+  function startGame() {
+    for (let i = 1; i <= 9; i++){
+      resetBoard(i)
+    }
+    document.playerTurn = 'X';
+    createMessage("Let's Play")
+  }
+
+  function createMessage(message) {
+    document.getElementById("msg").innerText=message
+  }
+
+  function handleClick(box) {
+    if (box.innerText === ''){
+      box.innerText = document.playerTurn;
+      switchPlayers();
+      console.log(document.playerTurn)
+    }
+  }
+  function switchPlayers() { 
+    if (checkForWin(document.playerTurn)){
+      createMessage(document.playerTurn + ' Wins!')
+    }
+    else if (document.playerTurn === 'X') {
+      document.playerTurn = 'O'
+    } else {
+      document.playerTurn = 'X'
+    }
+  }
+
+  function checkForWin(piece) {
+    if (checkThreeInARow(1, 2, 3, piece) || 
+      checkThreeInARow(4, 5, 6, piece) ||
+      checkThreeInARow(7, 8, 9, piece) ||
+      checkThreeInARow(1, 5, 9, piece) ||
+      checkThreeInARow(3, 5, 7, piece) ||
+      checkThreeInARow(1, 4, 7, piece) ||
+      checkThreeInARow(2, 5, 8, piece) ||
+      checkThreeInARow(3, 6, 9, piece)){
+        return true
+      }
+    }
+
+  function checkThreeInARow(a, b, c, piece) {
+    if (getTheBox(a) === piece && getTheBox(b) === piece && getTheBox(c) === piece) {
+      return true
+    }
+  }
+
+  function getTheBox(number) {
+    return document.getElementById('s' + number).innerText
+  }
+
+  function resetBoard(number) {
+    document.getElementById('s' + number).innerText=''
+    }
+
+</script>
