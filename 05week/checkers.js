@@ -8,13 +8,21 @@ const rl = readline.createInterface({
 });
 
 
-function Checker() {
+class Checker {
   // Your code here
+  constructor(color) {
+    if (color === 'white') {      
+      this.symbol = String.fromCharCode(0x125CB);
+    } else if (color === 'black') {
+      this.symbol = String.fromCharCode(0x125CF);
+    }
+  }
 }
 
 class Board {
   constructor() {
-    this.grid = []
+    this.grid = [];
+    this.checkers = [];
   }
   // method that creates an 8x8 array, filled with null values
   createGrid() {
@@ -52,6 +60,37 @@ class Board {
     console.log(string);
   }
 
+  createCheckers() {
+
+    let whitePosition = [[0, 1], [0, 3], [0, 5], [0, 7],
+    [1, 0], [1, 2], [1, 4], [1, 6],
+    [2, 1], [2, 3], [2, 5], [2, 7]]
+
+    let blackPosition = [[5, 0], [5, 2], [5, 4], [5, 6],
+    [6, 1], [6, 3], [6, 5], [6, 7],
+    [7, 0], [7, 2], [7, 4], [7, 6]]
+
+    // In a for loop, iterate over the range from 0 - 11, with each index you want to
+    for (i = 0; i < 11; i++) {
+      i = whitePosition
+    }
+    // Place that checker on the grid at the position corresponding with the index in the positions array
+
+    // Push the checker into your this.checkers array
+
+    // Do all three steps above for a 'black' checker
+
+    // In your Game class, in the this.start method, add this.board.createCheckers().
+  }
+
+  selectCheckers() {
+
+
+  }
+
+  killCheckers() {
+
+  }
   // Your code here
 }
 
