@@ -11,38 +11,38 @@ let jobTypes = {
 
 // Your code here
 class crewMember {
-  constructor('name', 'job', 'special skill', 'ship') {
+  constructor(name, job, skill, ship) {
     this.name = name;
     this.job = job;
-    this.specialSkill = specialSkill;
+    this.skill = skill;
     this.ship = ship;
   }
 }
-enterShip(ship) {
+enterShip(ship); {
   this.ship = ship;
   this.ship.crew(push);
-}
-let crewMember1 = new crewMember('Rick Martinez', 'pilot', 'chemistry') {
+// }
+// let crewMember1 = new crewMember('Rick Martinez', 'pilot', 'chemistry') {
   
-}
-let crewMember2 = new crewMember('Commander Lewis', 'commander', 'geology') {
+// }
+// let crewMember2 = new crewMember('Commander Lewis', 'commander', 'geology') {
   
-}
-class ship {
-  constructor('name', 'type', 'ability', 'crew') {
-    this.name = name;
-    this.type = type;
-    this.ability = ability;
-    this.crew.length = [];
-  }
-}
+// }
+// class ship {
+//   constructor(name, type, ability, crew) {
+//     this.name = name;
+//     this.type = type;
+//     this.ability = ability;
+//     this.crew.length = [];
+//   }
+// }
 
-let hermes = new ship('Hermes', 'Main Ship', 'Interplanetary Space Travel') {
+// let hermes = new ship('Hermes', 'Main Ship', 'Interplanetary Space Travel') {
   
-}
-let mav = new ship ('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit') {
+// }
+// let mav = new ship ('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit') {
 
-}
+// }
 //tests
 if (typeof describe === 'function'){
   describe('CrewMember', function(){
