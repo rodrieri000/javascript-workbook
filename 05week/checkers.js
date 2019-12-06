@@ -19,6 +19,9 @@ class Checker {
   }
 }
 
+const whiteChecker = new Checker('white');
+const blackChecker = new Checker('black');
+
 class Board {
   constructor() {
     this.grid = [];
@@ -34,6 +37,7 @@ class Board {
         this.grid[row].push(null);
       }
     }
+
   }
   viewGrid() {
     // add our column numbers
@@ -71,9 +75,26 @@ class Board {
     [7, 0], [7, 2], [7, 4], [7, 6]]
 
     // In a for loop, iterate over the range from 0 - 11, with each index you want to
-    for (i = 0; i < 11; i++) {
-      i = whitePosition
+    let i;
+    for (i = 0; i < 12; i++) {
+  
+      const whiteCord = whitePosition[i] 
+      // assigning coordinates of whitePosition on board
+      const whiteRow = whiteCord[0]
+      // assigning row
+      const whiteCol = whiteCord[1]
+      // assigning col
+      this.grid[whiteRow][whiteCol] = whiteChecker
+
+      const blackCord = blackPosition[i]
+      // assigning coordinates of blackPostion on board
+      const blackRow = blackCord[0]
+      // assigning row
+      const blackCol = blackCord[1]
+      // assinging col
+      this.grid[blackRow][blackCol] = blackChecker
     }
+
     // Place that checker on the grid at the position corresponding with the index in the positions array
 
     // Push the checker into your this.checkers array
@@ -100,6 +121,7 @@ class Game {
   }
   start() {
     this.board.createGrid();
+    this.board.createCheckers();
   }
 }
 
