@@ -26,6 +26,7 @@ class Board {
   constructor() {
     this.grid = [];
     this.checkers = [];
+    this.selectCheckers("row", "column");
   }
   // method that creates an 8x8 array, filled with null values
   createGrid() {
@@ -118,11 +119,20 @@ class Board {
 class Game {
   constructor() {
     this.board = new Board;
+    // this.moveChecker("start", "end");
+    // Next, in your Game class, create a this.moveChecker method that takes two parameters start, end. 
+    // These two arguments will each contain a row and a column, eg. 50, 41. 
+    // Inside the method, use your board helper method selectChecker to select the checker at your starting rowcolumncoordinates 
+    // and set it to a local variable checker. 
+    // Then set that spot on the grid to null and set the spot at the end rowcolumn coordinate to the checker.
   }
   start() {
     this.board.createGrid();
     this.board.createCheckers();
   }
+  // end(row, column) {
+
+  // }
 }
 
 function getPrompt() {
