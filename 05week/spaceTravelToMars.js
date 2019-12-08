@@ -21,6 +21,7 @@ class crewMember {
 enterShip(ship); {
   this.ship = ship;
   this.ship.crew(push);
+}
 // }
 // let crewMember1 = new crewMember('Rick Martinez', 'pilot', 'chemistry') {
   
@@ -28,14 +29,14 @@ enterShip(ship); {
 // let crewMember2 = new crewMember('Commander Lewis', 'commander', 'geology') {
   
 // }
-// class ship {
-//   constructor(name, type, ability, crew) {
-//     this.name = name;
-//     this.type = type;
-//     this.ability = ability;
-//     this.crew.length = [];
-//   }
-// }
+class ship {
+  constructor(name, type, ability, crew) {
+    this.name = name;
+    this.type = type;
+    this.ability = ability;
+    this.crew.length = [];
+  }
+}
 
 // let hermes = new ship('Hermes', 'Main Ship', 'Interplanetary Space Travel') {
   
